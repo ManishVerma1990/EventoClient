@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 import axios from "axios";
 import type { User } from "../store/userSlice";
+import { useEffect, useState } from "react";
 
 export default function NavBar() {
   const isLoggedIn = useAppSelector((state) => state.user.isLoggedIn);
@@ -66,12 +67,7 @@ export default function NavBar() {
                 </a>
               </li>
             </ul>
-            <div className="d-flex me-2">
-              <input className="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search" />
-              <button className="btn btn-outline-primary" type="submit">
-                Search
-              </button>
-            </div>
+            <SearchBar />
             {!isLoggedIn ? (
               <Link to={"/login"} className="btn btn-primary">
                 Login
@@ -121,5 +117,66 @@ export default function NavBar() {
         </div>
       </nav>
     </>
+  );
+}
+
+function SearchBar() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [events, setEvents] = useState<string[]>([]);
+  const navigate = useNavigate();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+    console.log("Search term:", e.target.value);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // navigate(`/event/${}`);
+  };
+
+  useEffect(() => {
+    setTimeout(async () => {
+      if (searchTerm.trim() !== "") {
+        const result = await axios.get(`http://localhost:8080/event/name/${searchTerm}`);
+        console.log("Search results:", result.data);
+        setEvents(result.data);
+      } else {
+      }
+    }, 200);
+  }, [searchTerm]);
+
+  return (
+    <div className="d-flex me-2">
+      <input
+        className="form-control me-2"
+        name="search"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+        value={searchTerm}
+        onChange={handleChange}
+      />
+      {events.length > 0 && (
+        <ul className="list-group position-absolute" style={{ zIndex: 1000, top: "50px" }}>
+          {events.map((event: any, index) => (
+            <li
+              // key={}
+              className="list-group-item list-group-item-action"
+              onClick={() => {
+                navigate(`/event/${event.eventId}`);
+                setEvents([]);
+                setSearchTerm("");
+              }}
+            >
+              {event.title}
+            </li>
+          ))}
+        </ul>
+      )}
+      {/* <button className="btn btn-outline-primary" type="submit" onClick={handleSubmit}>
+        Search
+      </button> */}
+    </div>
   );
 }

@@ -39,12 +39,10 @@ const ListEvents: React.FC = () => {
 
   const handleRegister = async (eventId: string) => {
     const userId = user?.userId;
-    console.log("Handle register called for eventId:", userId);
     if (!userId) {
       navigate("/login");
       return;
     }
-    console.log("Registering user:", userId, "for event:", eventId);
     try {
       await axios.post(
         `http://localhost:8080/registration/new`,
@@ -71,10 +69,8 @@ const ListEvents: React.FC = () => {
     const fetchEvents = async () => {
       if (organizerId) {
         try {
-          console.log("Fetching events for organizer:", organizerId);
           const res = await axios.get<Event[]>(`http://localhost:8080/event/organizer/${organizerId}`);
           setEvents(res.data);
-          console.log(res.data);
         } catch (err) {
           setError("Failed to fetch events for organizer");
           console.error(err);
@@ -83,7 +79,6 @@ const ListEvents: React.FC = () => {
         }
       } else if (userId) {
         try {
-          console.log("Fetching events for user registrations:", userId);
           const res = await axios.get<Event[]>(`http://localhost:8080/registration/user/${userId}`);
           setEvents(res.data);
         } catch (err) {
@@ -106,13 +101,9 @@ const ListEvents: React.FC = () => {
     };
     fetchEvents();
   }, [organizerId]);
-  console.log("events", events);
 
   if (loading) return <p className="text-center mt-5">Loading events...</p>;
   if (error) return <p className="text-center text-danger mt-5">{error}</p>;
-
-  const currentUrl = window.location.href;
-  console.log(currentUrl);
 
   return (
     <div className="container mt-5">
