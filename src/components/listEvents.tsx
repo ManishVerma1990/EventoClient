@@ -18,11 +18,22 @@ interface Event {
 
 // Random images for events
 const randomImages = [
-  "https://picsum.photos/600/400?random=1",
-  "https://picsum.photos/600/400?random=2",
-  "https://picsum.photos/600/400?random=3",
-  "https://picsum.photos/600/400?random=4",
-  "https://picsum.photos/600/400?random=5",
+  // "https://picsum.photos/600/400?random=1",
+  // "https://picsum.photos/600/400?random=2",
+  // "https://picsum.photos/600/400?random=3",
+  // "https://picsum.photos/600/400?random=4",
+  // "https://picsum.photos/600/400?random=5",
+  "/images/aditya-chinchure-ZhQCZjr9fHo-unsplash.jpg",
+  "/images/chuttersnap-aEnH4hJ_Mrs-unsplash.jpg",
+  "/images/chuttersnap-Q_KdjKxntH8-unsplash.jpg",
+  "/images/evangeline-shaw-nwLTVwb7DbU-unsplash.jpg",
+  "/images/fidel-fernando-249DzAuJTqQ-unsplash.jpg",
+  "/images/noiseporn-JNuKyKXLh8U-unsplash.jpg",
+  "/images/jakob-dalbjorn-cuKJre3nyYc-unsplash.jpg",
+  "/images/pablo-heimplatz-ZODcBkEohk8-unsplash.jpg",
+  "/images/photos-by-lanty-O38Id_cyV4M-unsplash.jpg",
+  "/images/stem-list-EVgsAbL51Rk-unsplash.jpg",
+  "/images/the-climate-reality-project-Hb6uWq0i4MI-unsplash.jpg",
 ];
 
 const ListEvents: React.FC = () => {
@@ -107,7 +118,8 @@ const ListEvents: React.FC = () => {
 
   return (
     <div className="container mt-5">
-      <h1 className="title">{title}</h1>
+      <h3 className="title mb-3">{title}</h3>
+      <hr />
       <div className="row g-4">
         {events.map((event, index) => (
           <div className="col-md-4">
@@ -115,8 +127,9 @@ const ListEvents: React.FC = () => {
               <Link to={`/event/${event.eventId}`}>
                 <img
                   src={randomImages[index % randomImages.length]}
+                  // src="\images\image.jpg"
                   className="card-img-top"
-                  alt="Event"
+                  alt={randomImages[index % randomImages.length]}
                   style={{ height: "200px", objectFit: "cover" }}
                 />
               </Link>
@@ -136,7 +149,7 @@ const ListEvents: React.FC = () => {
                 <p className="card-text mb-3">
                   <strong>Price:</strong> ${event.price}
                 </p>
-                <button className="btn btn-primary mt-auto" onClick={async () => handleRegister(event.eventId)}>
+                <button className="btn btn-outline-primary mt-auto" onClick={async () => handleRegister(event.eventId)}>
                   Register
                 </button>
               </div>

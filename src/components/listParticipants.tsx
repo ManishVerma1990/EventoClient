@@ -57,7 +57,7 @@ const ListParticipants: React.FC = () => {
       {participants.length > 0 ? (
         <div className="table-responsive">
           <table className="table table-striped table-bordered align-middle">
-            <thead className="table-dark">
+            <thead className="table-info">
               <tr>
                 <th>#</th>
                 <th>Name</th>

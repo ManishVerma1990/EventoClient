@@ -6,12 +6,14 @@ import Register from "../components/register";
 import NewEvent from "../components/eventForm";
 import ListParticipants from "../components/listParticipants";
 import UserProfile from "../components/userProfile";
+import HomePage from "../components/homePage";
 
 export default function Body() {
   return (
     <section>
       <Routes>
-        <Route path="/" element={<ListEvents />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/event" element={<ListEvents />} />
         <Route path="/event/organizer/:id" element={<ListEvents />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

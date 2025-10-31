@@ -52,7 +52,7 @@ export default function NavBar() {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/">
+                <a className="nav-link" href="/event">
                   Events
                 </a>
               </li>

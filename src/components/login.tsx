@@ -31,7 +31,7 @@ const Login: React.FC = () => {
         setSuccess(true);
         setEmail("");
         setPassword("");
-        navigate("/");
+        navigate("/event");
         dispatch({ type: "user/loginSuccess", payload: res.data });
       }
     } catch (err: any) {

@@ -24,6 +24,25 @@ const EventDetail: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const randomImages = [
+    // "https://picsum.photos/600/400?random=1",
+    // "https://picsum.photos/600/400?random=2",
+    // "https://picsum.photos/600/400?random=3",
+    // "https://picsum.photos/600/400?random=4",
+    // "https://picsum.photos/600/400?random=5",
+    "/images/aditya-chinchure-ZhQCZjr9fHo-unsplash.jpg",
+    "/images/chuttersnap-aEnH4hJ_Mrs-unsplash.jpg",
+    "/images/chuttersnap-Q_KdjKxntH8-unsplash.jpg",
+    "/images/evangeline-shaw-nwLTVwb7DbU-unsplash.jpg",
+    "/images/fidel-fernando-249DzAuJTqQ-unsplash.jpg",
+    "/images/noiseporn-JNuKyKXLh8U-unsplash.jpg",
+    "/images/jakob-dalbjorn-cuKJre3nyYc-unsplash.jpg",
+    "/images/pablo-heimplatz-ZODcBkEohk8-unsplash.jpg",
+    "/images/photos-by-lanty-O38Id_cyV4M-unsplash.jpg",
+    "/images/stem-list-EVgsAbL51Rk-unsplash.jpg",
+    "/images/the-climate-reality-project-Hb6uWq0i4MI-unsplash.jpg",
+  ];
+
   const navigate = useNavigate();
   const user: User | null = useAppSelector((state) => state.user.user);
 
@@ -48,8 +67,9 @@ const EventDetail: React.FC = () => {
   const formatDate = (dateStr: string) => new Date(dateStr).toLocaleString();
 
   const handleRegister = async (eventId: string) => {
-    const user: User | null = useAppSelector((state) => state.user.user);
+    // const user: User | null = useAppSelector((state) => state.user.user);
     const userId = user?.userId;
+    console.log("register");
     try {
       await axios.post(
         `http://localhost:8080/registration/new`,
@@ -96,7 +116,7 @@ const EventDetail: React.FC = () => {
   return (
     <div className="d-flex justify-content-center mt-5">
       <div className="card" style={{ maxWidth: "700px", width: "100%" }}>
-        <img src={imageUrl} className="card-img-top" alt="Event" />
+        <img src={randomImages[Math.floor(Math.random() * 10)]} className="card-img-top" alt="Event" />
         <div className="card-body">
           <h3 className="card-title">{event.title}</h3>
           <p className="card-text">{event.description}</p>
@@ -105,10 +125,10 @@ const EventDetail: React.FC = () => {
             <li className="list-group-item">
               <strong>Category:</strong> {event.category}
             </li>
-            <li className="list-group-item">
+            {/* <li className="list-group-item">
               <strong>Status:</strong>{" "}
               <span className={event.status?.toLowerCase() === "active" ? "text-success" : "text-secondary"}>{event.status}</span>
-            </li>
+            </li> */}
             <li className="list-group-item">
               <strong>Address:</strong> {event.address}
             </li>

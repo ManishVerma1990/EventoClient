@@ -44,43 +44,47 @@ export default function UserProfile() {
   }
 
   return (
-    <div className="max-w-lg mx-auto bg-white shadow-md rounded-2xl p-6 mt-10">
-      <h2 className="text-2xl font-semibold mb-6 text-center">User Profile</h2>
+    <div className="container p-5 d-flex justify-content-center">
+      <div className="card p-5 mx-5">
+        <div className="max-w-lg mx-auto bg-white shadow-md rounded-2xl p-6 mt-10">
+          <h2 className="text-2xl font-semibold mb-6 text-center">User Profile</h2>
 
-      <div className="space-y-4">
-        <div className="mb-3">
-          <span className="block font-medium text-gray-600">Name: </span>
-          <span>{user.name}</span>
-        </div>
+          <div className="space-y-4">
+            <div className="mb-3">
+              <span className="block font-medium text-gray-600">Name: </span>
+              <span>{user.name}</span>
+            </div>
 
-        <div className="mb-3">
-          <span className="block font-medium text-gray-600">Email: </span>
-          <span>{user.email}</span>
-        </div>
+            <div className="mb-3">
+              <span className="block font-medium text-gray-600">Email: </span>
+              <span>{user.email}</span>
+            </div>
 
-        <div className="mb-3">
-          <span className="block font-medium text-gray-600">Role: </span>
-          <span>{user.role}</span>
-        </div>
+            <div className="mb-3">
+              <span className="block font-medium text-gray-600">Role: </span>
+              <span>{user.role}</span>
+            </div>
 
-        <div className="mb-3">
-          <span className="block font-medium text-gray-600">Phone: </span>
-          <span>{user.phone}</span>
-        </div>
+            <div className="mb-3">
+              <span className="block font-medium text-gray-600">Phone: </span>
+              <span>{user.phone}</span>
+            </div>
 
-        {user.createdAt && (
-          <div className="mb-3">
-            <span className="block font-medium text-gray-600">Created At: </span>
-            <span>{new Date(user.createdAt).toLocaleString()}</span>
+            {user.createdAt && (
+              <div className="mb-3">
+                <span className="block font-medium text-gray-600">Created At: </span>
+                <span>{new Date(user.createdAt).toLocaleString()}</span>
+              </div>
+            )}
+
+            {user.updatedAt && (
+              <div className="mb-3">
+                <span className="block font-medium text-gray-600 ">Updated At: </span>
+                <span>{new Date(user.updatedAt).toLocaleString()}</span>
+              </div>
+            )}
           </div>
-        )}
-
-        {user.updatedAt && (
-          <div className="mb-3">
-            <span className="block font-medium text-gray-600 ">Updated At: </span>
-            <span>{new Date(user.updatedAt).toLocaleString()}</span>
-          </div>
-        )}
+        </div>
       </div>
     </div>
   );
